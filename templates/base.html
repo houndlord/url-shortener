@@ -1,13 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <style>
-        body{color: blue}
-    </style>
-</head>
-<body>
+<link href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
-</body>
-</html>
+<nav class="navbar navbar-default" role="navigation">
+    <div class = "container-fluid">
+        <div class="col-md-6 col-md-offset-3"
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">xyj</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-6 col-md-offset-3">
+    {% block content %}{% endblock %}
+</div>
+</div>
+</div>
+
+<script src="static/jquery-3.4.1.min.js"></script>
+<script src="static/bootstrap/js/bootstrap.min.js"></script>
