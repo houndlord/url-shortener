@@ -5,10 +5,13 @@ import psycopg2
 from db_conn import get_db_connection
 from app import app 
 
+@app.route('/')
+def debil():
+    return "ebil"
 
-
-@app.route('/', methods =('GET', 'POST'))
+@app.route('/index', methods =('GET', 'POST'))
 def home():
+    print("fdsf")
     conn = get_db_connection()
     if request.method == 'POST':
         url = request.form['url']
