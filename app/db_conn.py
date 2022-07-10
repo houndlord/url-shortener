@@ -1,4 +1,8 @@
+import psycopg2
+
 def get_db_connection():
-    conn = sqlite3.connect('databse.db')
-    conn.row_factory = sqlite3.Row
+    conn = psycopg2.connect(host='localhost',
+                            database='flask_db',
+                            user='DB_USERNAME',
+                            password='DB_PASSWORD')
     return conn

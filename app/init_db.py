@@ -1,9 +1,24 @@
-import sqlite3
+import os
+import psycopg2
 
-connection = sqlite3.connect('database.db')
+conn = psycopg2.connect(
+        host="localhost",
+        database="flask_db",
+        user=os.environ['DB_USER'],
+        password=os.environ['DB_PASSWORD'])
+conn.set_session(autocommit = True)
 
-with open('schema.sql') as f:
-    connection.executescript(f.read())
+cur = conn.cursor()
 
-connection.commit
-connection.close
+cur.execute("CREATE DATABASE Links")
+
+conn.execute('DROP TABLE IF EXISTS links;')
+conn.execute('CREATE TABLE links ('
+    'id INTEGER PRIMARY KEY AUTOINCREMENT,'
+    'url TEXT NOT NULL'
+    'shortlink TEXT NOT NULL);'
+)
+conn.commit()
+
+cur.close()
+conn.close()

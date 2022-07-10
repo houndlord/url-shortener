@@ -1,12 +1,15 @@
 from flask import render_template, flash, redirect, url_for
 from flask.wrappers import Request
 from werkzeug.wrappers import request
+import psycopg2
+from db_conn import get_db_connection
 from app import app 
-from app import db_conn
+
+
 
 @app.route('/', methods =('GET', 'POST'))
 def home():
-    conn = app.get_db_connection 
+    conn = get_db_connection()
     if request.method == 'POST':
         url = request.form['url']
 
@@ -18,7 +21,7 @@ def home():
 
 @app.route('/<id>')
 def redirect(id):
-    conn = db_conn.get_db_connection
-    id = hashids.decode(id)
-    if id:
-        
+    conn = get_db_connection()
+    conn.execute('SELECT * FROM Links where (%s) == id;', (id))
+    res = conn.fetchone()
+    return redirect(res)
