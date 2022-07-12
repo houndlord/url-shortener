@@ -5,7 +5,7 @@ import psycopg2
 from db_conn import get_db_connection
 from app import app 
 
-@app.route('/')
+@app.route('/h')
 def debil():
     return "ebil"
 
