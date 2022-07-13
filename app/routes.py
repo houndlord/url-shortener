@@ -11,7 +11,8 @@ from app import app
 def debil():
     return "ebil"
 
-@app.route('index'):
+@app.route('index')
+def home():
     form = URLForm
     return render_template('index.html', form = form)
 
