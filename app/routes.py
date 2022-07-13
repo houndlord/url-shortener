@@ -11,13 +11,16 @@ from app import app
 def debil():
     return "ebil"
 
+@app.route('index'):
+    form = URLForm
+    return render_template('index.html', form = form)
+
 @app.route('/index', methods =('GET', 'POST'))
 def home():
     print("fdsf")
     form = URLForm()
     conn = get_db_connection()
-    if request.method == 'POST':
-        url = request.form['url']
+    if form.validate_on_submit
 
         url.data = conn.execute('INSERT INTO links (url) VALUES (?)',
                             (url,))
