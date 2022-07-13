@@ -2,8 +2,10 @@ from flask import render_template, flash, redirect, url_for
 from flask.wrappers import Request
 from werkzeug.wrappers import request
 import psycopg2
-from db_conn import get_db_connection
+from .db_conn import get_db_connection
+from .forms import URLForm
 from app import app 
+
 
 @app.route('/h')
 def debil():
@@ -12,6 +14,7 @@ def debil():
 @app.route('/index', methods =('GET', 'POST'))
 def home():
     print("fdsf")
+    form = URLForm()
     conn = get_db_connection()
     if request.method == 'POST':
         url = request.form['url']
@@ -20,7 +23,7 @@ def home():
                             (url,))
         conn.commit()
         conn.close()
-    return render_template('home.html')
+    return render_template('home.html', form = form)
 
 @app.route('/<id>')
 def redirect(id):

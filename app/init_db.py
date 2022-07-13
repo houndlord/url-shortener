@@ -10,12 +10,12 @@ conn.set_session(autocommit = True)
 
 cur = conn.cursor()
 
-cur.execute("CREATE DATABASE IF NOT EXISTS Links")
+#cur.execute("CREATE DATABASE Links")
 
 cur.execute('DROP TABLE IF EXISTS links;')
 cur.execute('CREATE TABLE links ('
-    'id INTEGER PRIMARY KEY AUTOINCREMENT,'
-    'url TEXT NOT NULL'
+    'id INTEGER PRIMARY KEY,'
+    'url TEXT NOT NULL,'
     'shortlink TEXT NOT NULL);'
 )
 conn.commit()
