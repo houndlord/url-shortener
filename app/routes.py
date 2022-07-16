@@ -11,23 +11,23 @@ from app import app
 def debil():
     return "ebil"
 
-@app.route('index')
-def home():
-    form = URLForm
+@app.route('/index')
+def some():
+    form = URLForm()
     return render_template('index.html', form = form)
 
 @app.route('/index', methods =('GET', 'POST'))
 def home():
     print("fdsf")
     form = URLForm()
-    conn = get_db_connection()
-    if form.validate_on_submit
-
-        url.data = conn.execute('INSERT INTO links (url) VALUES (?)',
-                            (url,))
+    if form.validate_on_submit():
+        url = URLForm.url
+        conn = get_db_connection()
+        conn.execute('INSERT INTO links (%s) VALUES (?)',
+                            (url))
         conn.commit()
         conn.close()
-    return render_template('home.html', form = form)
+        return render_template('home.html', form = form)
 
 @app.route('/<id>')
 def redirect(id):
