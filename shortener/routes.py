@@ -4,7 +4,7 @@ from werkzeug.wrappers import request
 import psycopg2
 from .db_conn import get_db_connection
 from .forms import URLForm
-from app import app 
+from __main__ import app 
 
 
 @app.route('/h')
@@ -14,7 +14,7 @@ def debil():
 @app.route('/index')
 def some():
     form = URLForm()
-    return render_template('index.html', form = form)
+    return render_template('home.html', form = form)
 
 @app.route('/index', methods =('GET', 'POST'))
 def home():
@@ -29,9 +29,9 @@ def home():
         conn.close()
         return render_template('home.html', form = form)
 
-@app.route('/<id>')
-def redirect(id):
-    conn = get_db_connection()
-    conn.execute('SELECT * FROM Links where (%s) == id;', (id))
-    res = conn.fetchone()
-    return redirect(res)
+#@app.route('/<id>')
+#def redirect(id):
+#    conn = get_db_connection()
+#    conn.execute('SELECT * FROM Links where (%s) == id;', (id))
+#    res = conn.fetchone()
+#    return redirect(res)

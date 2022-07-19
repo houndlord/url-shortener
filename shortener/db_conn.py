@@ -6,4 +6,4 @@ def get_db_connection():
                             database='links',
                             user=os.environ['DB_USERNAME'],
                             password=os.environ['DB_PASSWORD'])
-    return conn
+    return conn.cursor()
